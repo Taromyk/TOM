@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counter</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f000;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+  .counter-buttons {
+    display: flex;
+  }
+  .counter-display {
+    margin: 20px;
+    font-size: 2em;
+    padding: 20px;
+    border: 3.5px solid #333;
+    border-radius: 50px;
+    width: 100px;
+    text-align: center;
+  }
+  button {
+    cursor: pointer;
+    margin: 10px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.5em;
+    background-color: #f6f6f6;
+    color: rgb(0, 0, 0);
+    width: 80px;
+   
+  }
+
+  button:focus {
+    outline: none;
+  }
+  button:active {
+    transform: scale(0.95);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="counter-buttons">
+    <button id="add-10">10</button>
+    <button id="add-50">50</button>
+    <button id="clear">C</button>
+    <div class="counter-display" id="total">0</div>
+  </div>
+  
+</div>
+
+<script>
+  let total = 0;
+  const display = document.getElementById('total');
+
+  document.getElementById('add-10').addEventListener('click', function() {
+    total += 10;
+    display.textContent = total;
+  });
+
+  document.getElementById('add-50').addEventListener('click', function() {
+    total += 50;
+    display.textContent = total;
+  });
+
+  document.getElementById('clear').addEventListener('click', function() {
+    total = 0;
+    display.textContent = total;
+  });
+</script>
+</body>
+</html>
