@@ -569,7 +569,7 @@
 
 
       const requestAmount = await contract.methods.requests(account).call();
-      document.getElementById('requestDisplay').innerText = `請求されたトムポイント: ${requestAmount} TMP`;
+      document.getElementById('requestDisplay').innerText = `請求中のトムポイント: ${requestAmount} TMP`;
     }
 
     document.getElementById('requestTokens').addEventListener('click', async () => {
