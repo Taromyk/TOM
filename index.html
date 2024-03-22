@@ -60,7 +60,7 @@
 </style>
 </head>
 <body>
-<div id="balanceDisplay" style="text-align: center; font-size: 2em; margin-top: 25px;">トムポイント: 0 TMP</div>
+<div id="balanceDisplay" style="text-align: center; font-size: 2em; margin: 25px;">トムポイント: 0 TMP</div>
 <div class="container">
   <div id="requestDisplay" style="font-size: 1.5em; margin-bottom: 10px;">請求中のトムポイント: 0 TMP</div>
   <button id="requestTokens">せいきゅう</button>
@@ -565,7 +565,7 @@
 
     async function updateDisplay() {
       const balance = await contract.methods.balanceOf(account).call();
-      document.getElementById('balanceDisplay').innerHTML = `トムポイント:<br>${balance} TMP`;
+      document.getElementById('balanceDisplay').innerHTML = `トムポイント<br>${balance} TMP`;
 
 
       const requestAmount = await contract.methods.requests(account).call();
