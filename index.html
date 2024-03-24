@@ -50,7 +50,7 @@
 	text-align: center;
 	font-size: 3em;
 	color: #fff;
-	line-height: 0.7;
+	line-height: 0.5;
   }
 
   .curved-footer {
@@ -113,6 +113,13 @@
   button:active {
     transform: scale(0.95);
   }
+
+  #omikuji {
+	width: 8em;
+	height: 70px;
+	font-size: 1.5em;
+	margin: 10px;
+  }
 </style>
 </head>
 <body>
@@ -130,8 +137,41 @@
     		<div class="counter-display" id="total">0</div>
 		</div>
  	</div>
-	<div class="curved-footer"></div>
+	<div class="curved-footer">
+		<button id="omikuji" onclick="getFortune()">おみくじ</button>
+		<p id="fortune"></p>
+	</div>
 </div>
+
+<script>
+	function getFortune() {
+  const today = new Date().toDateString(); // 今日の日付を取得
+  const lastFortuneDate = localStorage.getItem('lastFortuneDate'); // 最後におみくじを引いた日付を取得
+
+  // 最後におみくじを引いた日付が今日であれば、おみくじを引けない
+  if (lastFortuneDate === today) {
+    alert('今日はすでにおみくじを引いています。明日また来てください。');
+    return;
+  }
+
+  const randomNum = Math.floor(Math.random() * 30); // 0から29までのランダムな数値を生成
+  let fortune = '';
+  
+  if (randomNum === 0) {
+    fortune = '大吉'; // 1/30の確率で大吉を選択
+  } else if (randomNum <= 5) {
+    fortune = '吉'; // 5/30の確率で吉を選択
+  } else if (randomNum <= 15) {
+    fortune = '中吉'; // 10/30の確率で中吉を選択
+  } else {
+    fortune = '小吉'; // 14/30の確率で小吉を選択
+  }
+
+  document.getElementById('fortune').innerText = '今日の運勢は: ' + fortune;
+
+  localStorage.setItem('lastFortuneDate', today); // おみくじを引いた日付を記録
+}
+</script>
 
 <script>
   let total = 0;
