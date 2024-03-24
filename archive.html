@@ -38,18 +38,69 @@
     ; 
   }
   
+  .balanceDisplay {
+	text-align: center;
+	font-size: 2em;
+	margin: 25px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
 
+  .requestDisplay {
+	font-size: 1.5em;
+	margin-bottom: 10px;
+  }
+  .counter-buttons {
+    display: flex;
+  }
+  .counter-display {
+    margin: 2px;
+    font-size: 1.5em;
+    padding: 15px;
+    border: 2px solid #333;
+    border-radius: 25px;
+    width: 80px;
+    text-align: center;
+  }
+  button {
+    cursor: pointer;
+    margin: 1px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    background-color: #f6f6f6;
+    color: rgb(0, 0, 0);
+    width: 60px;
+  }
+
+  #requestTokens {
+    width: 8em;
+    height: 80px;
+    font-size: 2em;
+	margin: 10px;
+  }
+
+  button:focus {
+    outline: none;
+  }
+  button:active {
+    transform: scale(0.95);
+  }
   
 </style>
 </head>
 <body>
   <div class="frame">
     <div class="curved-header">
-      <div id="balanceDisplay" style="text-align: center; font-size: 2em; margin: 25px;">トムポイント: 0 TMP</div>
+      <div id="balanceDisplay">トムポイント: 0 TMP</div>
     </div>
     <div class="curved-footer">
       <div class="container">
-        <div id="requestDisplay" style="font-size: 1.5em; margin-bottom: 10px;">請求中のトムポイント: 0 TMP</div>
+        <div id="requestDisplay">請求中のトムポイント: 0 TMP</div>
         <button id="requestTokens">せいきゅう</button>
         <div class="counter-buttons">
           <button id="add-10">10</button>
