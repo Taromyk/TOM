@@ -169,14 +169,14 @@ function getFortune() {
         fortuneElement.innerText = '今日の運勢は: ' + fortune;
     }
 
-    let total = parseFloat(localStorage.getItem('totalETH')) || 0; // 文字列から数値に変換
+	let total = parseFloat(localStorage.getItem('totalETH')) || 0;
     const newTotal = total + eth;
     localStorage.setItem('totalETH', newTotal.toString());
+
     const totalEthElement = document.getElementById('totalETH');
     if (totalEthElement) {
-        // 少数に戻して表示
-        totalEthElement.innerText = '合計: ' + (newTotal / 10000).toFixed(5) + ' ETH';
-    }
+        totalEthElement.innerText = '合計: ' + (newTotal / 100000).toFixed(5) + ' ETH';
+    }   
 }
 </script>
 
