@@ -632,17 +632,15 @@
       document.getElementById('requestDisplay').innerText = `請求中のトムポイント: ${requestAmount} TMP`;
     }
 
-    document.getElementById('requestTokens').addEventListener('click', async () => {
-      try {
-        if (total !== 0) {
-          const amount = parseInt(document.getElementById('total').innerText, 10);
-          await contract.methods.requestTokens(amount).send({ from: account });
-          updateDisplay();
-        }
-      } catch (error) {
-        console.error('請求ポイントが０です:', error);
-      }
-    });
+	document.getElementById('requestTokens').addEventListener('click', async () => {
+		const amount = parseInt(document.getElementById('total').innerText, 10);
+		if (amount > 0) {
+			await contract.methods.requestTokens(amount).send({ from: account });
+			updateDisplay();
+		} else {
+			alert('トムポイントが０です');
+		}
+	});
 
     updateDisplay();
   });
