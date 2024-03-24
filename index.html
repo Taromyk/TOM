@@ -32,11 +32,11 @@
     justify-content: center;
     align-items: center;
     font-size: 2em;
-    margin: 10px;
     color: #fff;
     text-align: center;
     font-weight: bold;
     font-family: 'Arial', sans-serif;
+	margin-bottom: 10px;
   }
   
   .curved-footer {
@@ -51,25 +51,6 @@
 	text-align: center;
 	font-size: 4em;
 	color: #fff;
-	font-weight:bold;
-  }
-
-  .curved-header {
-	position: relative;
-	background: #dc9d17;
-	height: 15%;
-	width: 100%;
-	clip-path: ellipse(60% 100% at 50% 0%);
-	z-index: 10;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 2em;
-	margin: 10px;
-	color: #fff;
-	text-align: center;
-	font-weight: bold;
-	font-family: 'Arial', sans-serif;
   }
 
   .curved-footer {
@@ -80,11 +61,6 @@
 	z-index: 5; 
   }
 
-  .balanceDisplay {
-	margin: 25px;
-
-  }
-  
   .container {
     display: flex;
     flex-direction: column;
@@ -93,22 +69,25 @@
 
   .requestDisplay {
 	font-size: 1.5em;
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-bottom: 10px;
   }
 
   .counter-buttons {
     display: flex;
+	margin-bottom: 13px;
   }
+
   .counter-display {
     margin: 2px;
-    font-size: 1.5em;
+    font-size: 2em;
     padding: 15px;
     border: 2px solid #333;
     border-radius: 25px;
     width: 80px;
     text-align: center;
   }
+
   button {
     cursor: pointer;
     margin: 1px;
@@ -150,7 +129,6 @@
     		<button id="clear">C</button>
     		<div class="counter-display" id="total">0</div>
 		</div>
-		<a href="./archive.html">アーカイブへのリンク</a>
  	</div>
 	<div class="curved-footer"></div>
 </div>
@@ -651,7 +629,7 @@
       document.getElementById('balanceDisplay').innerHTML = `トムポイント<br>${balance} TMP`;
 
       const requestAmount = await contract.methods.requests(account).call();
-      document.getElementById('requestDisplay').innerText = `請求されたトムポイント: ${requestAmount} TMP`;
+      document.getElementById('requestDisplay').innerText = `請求中のトムポイント: ${requestAmount} TMP`;
     }
 
     document.getElementById('requestTokens').addEventListener('click', async () => {
