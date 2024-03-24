@@ -24,15 +24,23 @@
   .curved-header {
     position: relative;
     background: #dc9d17;
-    height: 25%;
+    height: 15%;
     width: 100%;
-    clip-path: ellipse(70% 100% at 50% 0%);
+    clip-path: ellipse(60% 100% at 50% 0%);
     z-index: 10;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
+  .curved-footer {
+    position: relative;
+    background: #ecc571;
+    height: 100%;
+    width: 100%;
+    z-index: 5; 
+  }
+
   .balanceDisplay {
 	text-align: center;
 	font-size: 2em;
@@ -101,8 +109,9 @@
     		<button id="clear">C</button>
     		<div class="counter-display" id="total">0</div>
 		</div>
+		<a href="./archive.html">アーカイブへのリンク</a>
  	</div>
-	<a href="./archive.html">アーカイブへのリンク</a>
+	<div class="curved-footer"></div>
 </div>
 
 <script>
