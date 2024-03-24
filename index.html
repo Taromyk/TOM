@@ -7,15 +7,32 @@
 <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
 <style>
   /* 既存のスタイルはそのままに、必要に応じて追加のスタイルをここに記述 */
-  body {
+  body, html {
+    height: 100%;
+    margin: 0;
     font-family: Arial, sans-serif;
-    display: 
+    text-align: center;
+  }
+  
+  .frame {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    overflow: hidden;
+  }
+  
+  .curved-header {
+    position: relative;
+    background: #dc9d17;
+    height: 25%;
+    width: 100%;
+    clip-path: ellipse(70% 100% at 50% 0%);
+    z-index: 10;
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f0f0f000;
   }
-
+  
   .balanceDisplay {
 	text-align: center;
 	font-size: 2em;
@@ -71,17 +88,21 @@
 </style>
 </head>
 <body>
-<div id="balanceDisplay">トムポイント: 0 TMP</div>
-<div class="container">
-  <div id="requestDisplay">請求中のトムポイント: 0 TMP</div>
-  <button id="requestTokens">せいきゅう</button>
-  <div class="counter-buttons">
-    <button id="add-10">10</button>
-    <button id="add-50">50</button>
-    <button id="clear">C</button>
-    <div class="counter-display" id="total">0</div>
-  </div>
-<a href="./archive.html">アーカイブへのリンク</a>
+<div class="frame">
+	<div class="curved-header">
+		<div id="balanceDisplay">トムポイント: 0 TMP</div>
+	</div>
+	<div class="container">
+ 	 		<div id="requestDisplay">請求中のトムポイント: 0 TMP</div>
+ 		 	<button id="requestTokens">せいきゅう</button>
+ 		<div class="counter-buttons">
+   	 		<button id="add-10">10</button>
+    		<button id="add-50">50</button>
+    		<button id="clear">C</button>
+    		<div class="counter-display" id="total">0</div>
+		</div>
+ 	</div>
+	<a href="./archive.html">アーカイブへのリンク</a>
 </div>
 
 <script>
