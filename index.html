@@ -140,36 +140,52 @@
 	<div class="curved-footer">
 		<button id="omikuji" onclick="getFortune()">おみくじ</button>
 		<p id="fortune"></p>
+		<div id="totalETH">合計: 0 TMP</div>
 	</div>
 </div>
 
 <script>
-	function getFortune() {
-  const today = new Date().toDateString(); // 今日の日付を取得
-  const lastFortuneDate = localStorage.getItem('lastFortuneDate'); // 最後におみくじを引いた日付を取得
+function getFortune() {
+    const today = new Date().toDateString();
+    const lastFortuneDate = localStorage.getItem('lastFortuneDate');
 
-  // 最後におみくじを引いた日付が今日であれば、おみくじを引けない
-  if (lastFortuneDate === today) {
-    alert('今日はすでにおみくじを引いています。明日また来てください。');
-    return;
-  }
+    if (lastFortuneDate === today) {
+        alert('今日はすでにおみくじを引いています。明日また来てください。');
+        return;
+    }
 
-  const randomNum = Math.floor(Math.random() * 30); // 0から29までのランダムな数値を生成
-  let fortune = '';
-  
-  if (randomNum === 0) {
-    fortune = '大吉'; // 1/30の確率で大吉を選択
-  } else if (randomNum <= 5) {
-    fortune = '吉'; // 5/30の確率で吉を選択
-  } else if (randomNum <= 15) {
-    fortune = '中吉'; // 10/30の確率で中吉を選択
-  } else {
-    fortune = '小吉'; // 14/30の確率で小吉を選択
-  }
+    const randomNum = Math.floor(Math.random() * 30);
+    let fortune = '';
+    let eth = 0;
 
-  document.getElementById('fortune').innerText = '今日の運勢は: ' + fortune;
+    if (randomNum === 0) {
+        fortune = '大吉 0.0001ETH';
+        eth = 0.0001;
+    } else if (randomNum <= 5) {
+        fortune = '吉 0.00007ETH';
+        eth = 0.00007;
+    } else if (randomNum <= 15) {
+        fortune = '中吉 0.00003ETH';
+        eth = 0.00003;
+    } else {
+        fortune = '小吉 0.00001ETH';
+        eth = 0.00001;
+    }
 
-  localStorage.setItem('lastFortuneDate', today); // おみくじを引いた日付を記録
+    const fortuneElement = document.getElementById('fortune');
+    if (fortuneElement) {
+        fortuneElement.innerText = '今日の運勢は: ' + fortune;
+    }
+
+    const total = parseFloat(localStorage.getItem('totalETH') || '0');
+    const newTotal = total + eth;
+    localStorage.setItem('totalETH', newTotal.toString());
+    const totalEthElement = document.getElementById('totalETH');
+    if (totalEthElement) {
+        totalEthElement.innerText = '合計: ' + newTotal + ' ETH';
+    }
+
+    localStorage.setItem('lastFortuneDate', today);
 }
 </script>
 
