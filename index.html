@@ -49,7 +49,7 @@
 
   .balanceDisplay {
 	text-align: center;
-	font-size: 4em;
+	font-size: 3.5em;
 	color: #fff;
   }
 
@@ -68,7 +68,7 @@
   }
 
   .requestDisplay {
-	font-size: 1.5em;
+	font-size: 2em;
 	margin-top: 30px;
 	margin-bottom: 10px;
   }
@@ -102,8 +102,8 @@
 
   #requestTokens {
     width: 8em;
-    height: 80px;
-    font-size: 2em;
+    height: 70px;
+    font-size: 1.5em;
 	margin: 10px;
   }
 
@@ -633,9 +633,15 @@
     }
 
     document.getElementById('requestTokens').addEventListener('click', async () => {
-      const amount = parseInt(document.getElementById('total').innerText, 10);
-      await contract.methods.requestTokens(amount).send({ from: account });
-      updateDisplay();
+      try {
+        if (total !== 0) {
+          const amount = parseInt(document.getElementById('total').innerText, 10);
+          await contract.methods.requestTokens(amount).send({ from: account });
+          updateDisplay();
+        }
+      } catch (error) {
+        console.error('請求ポイントが０です:', error);
+      }
     });
 
     updateDisplay();
