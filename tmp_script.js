@@ -502,6 +502,8 @@
 		if (amount > 0) {
 			await contract.methods.requestTokens(amount).send({ from: account });
 			updateDisplay();
+			// ローカルストレージにトムポイントの請求トランザクションが行われたことをマークする
+			localStorage.setItem('omikujiButtonEnabled', 'true');
 		} else {
 			alert('トムポイントが０です');
 		}
