@@ -1,4 +1,3 @@
-// おみくじボタンがクリックされたときの処理
 document.addEventListener('DOMContentLoaded', function() {
     const omikujiButton = document.getElementById('omikujiButton');
     if (omikujiButton) {
@@ -7,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (omikujiButtonEnabled === 'true') {
                 // おみくじの処理をここに追加
-                function getFortune() {
                     // 現在の日付を取得
                     const today = new Date().toDateString();
 
@@ -55,12 +53,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // ローカルストレージに現在の日付を保存
                     localStorage.setItem('lastDate', today);
-                }
+                
                 //おみくじの処理ここまで
 
                 // おみくじが引かれた後は、おみくじボタンを無効にする
                 localStorage.setItem('omikujiButtonEnabled', 'false');
-            } else {
+            } 
+            
+            else {
                 alert('おみくじはまだ引けません');
             }
         });
