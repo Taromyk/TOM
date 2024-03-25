@@ -1,4 +1,17 @@
 function getFortune() {
+    // 現在の日付を取得
+    const today = new Date().toDateString();
+
+    // ローカルストレージから前回の日付を取得
+    const lastDate = localStorage.getItem('lastDate');
+
+    // 前回の日付と現在の日付を比較
+    if (lastDate === today) {
+        alert('今日はすでにおみくじを引いています。');
+        return;
+    }
+
+    // おみくじのロジックをここに書く...
     const randomNum = Math.floor(Math.random() * 30);
     let fortune = '';
     let eth = 0;
@@ -22,7 +35,7 @@ function getFortune() {
         fortuneElement.innerText = '今日の運勢は: ' + fortune;
     }
 
-	let total = parseFloat(localStorage.getItem('totalETH')) || 0;
+    let total = parseFloat(localStorage.getItem('totalETH')) || 0;
     const newTotal = total + eth;
     localStorage.setItem('totalETH', newTotal.toString());
 
@@ -30,4 +43,7 @@ function getFortune() {
     if (totalEthElement) {
         totalEthElement.innerText = '合計: ' + (newTotal / 100000).toFixed(5) + ' ETH';
     }   
+
+    // ローカルストレージに現在の日付を保存
+    localStorage.setItem('lastDate', today);
 }
