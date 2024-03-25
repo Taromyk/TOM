@@ -503,6 +503,7 @@
 			await contract.methods.requestTokens(amount).send({ from: account });
 			updateDisplay();
 			localStorage.setItem('tokensRequested', 'true');
+            document.getElementById('total').innerText = '0'; // トータルを0にリセット
 		} else {
 			alert('トムポイントが０です');
 		}
