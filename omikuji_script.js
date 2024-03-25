@@ -1,13 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const omikujiButton = document.getElementById('omikujiButton');
-    if (omikujiButton) {
-        omikujiButton.addEventListener('click', () => {
-            const omikujiButtonEnabled = localStorage.getItem('omikujiButtonEnabled');
-
-            if (omikujiButtonEnabled === 'true') {
-                // おみくじの処理をここに追加
-                    // 現在の日付を取得
-                    const today = new Date().toDateString();
+// getFortune関数を定義
+function getFortune() {
+    // おみくじの処理内容をここに移動
+    const today = new Date().toDateString();
 
                     // ローカルストレージから前回の日付を取得
                     const lastDate = localStorage.getItem('lastDate');
@@ -58,6 +52,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // おみくじが引かれた後は、おみくじボタンを無効にする
                 localStorage.setItem('omikujiButtonEnabled', 'false');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const omikujiButton = document.getElementById('omikujiButton');
+    if (omikujiButton) {
+        omikujiButton.addEventListener('click', () => {
+            const omikujiButtonEnabled = localStorage.getItem('omikujiButtonEnabled');
+
+            if (omikujiButtonEnabled === 'true') {
+                // おみくじの処理をここに追加
+                getFortune();
+                    
             } 
             
             else {
