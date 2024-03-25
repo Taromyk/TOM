@@ -3,15 +3,15 @@ function getFortune() {
     // 現在の日付を取得
     const today = new Date().toDateString();
 
-    // ローカルストレージから前回の日付を取得
+    // ローカルストレージから前回の日付と'tokensRequested'の値を取得
     const lastDate = localStorage.getItem('lastDate');
+    const tokensRequested = localStorage.getItem('tokensRequested');
 
-    // 前回の日付と現在の日付を比較
-    if (lastDate === today) {
-        alert('今日はすでにおみくじを引いています。');
+    // 前回の日付と現在の日付を比較、または'tokensRequested'が'true'かどうかを確認
+    if (lastDate === today || tokensRequested !== 'true') {
+        alert('今日はすでにおみくじを引いています、または役に立つ仕事がまだです。');
         return;
     }
-
     // おみくじのロジックをここに書く...
     const randomNum = Math.floor(Math.random() * 30);
     let fortune = '';
@@ -47,4 +47,6 @@ function getFortune() {
 
     // ローカルストレージに現在の日付を保存
     localStorage.setItem('lastDate', today);
+    // おみくじを引いた後にリセット
+    localStorage.setItem('tokensRequested', 'false'); 
 }
