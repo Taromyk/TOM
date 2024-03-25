@@ -1,4 +1,17 @@
-  let total = 0;
+  // MetaMaskとの連携
+  window.addEventListener('load', async () => {
+    if (window.ethereum) {
+      window.web3 = new Web3(window.ethereum);
+      try {
+        await window.ethereum.enable();
+      } catch (error) {
+        console.error("ユーザーがアカウントへのアクセスを拒否しました。");
+      }
+    } else {
+      console.log('MetaMaskをインストールしてください。');
+    } 
+ 
+ let total = 0;
   const display = document.getElementById('total');
 
   document.getElementById('add-10').addEventListener('click', function() {
@@ -16,18 +29,6 @@
     display.textContent = total;
   });
 
-  // MetaMaskとの連携
-  window.addEventListener('load', async () => {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
-      try {
-        await window.ethereum.enable();
-      } catch (error) {
-        console.error("ユーザーがアカウントへのアクセスを拒否しました。");
-      }
-    } else {
-      console.log('MetaMaskをインストールしてください。');
-    }
 
     const contractABI = [
 	{
