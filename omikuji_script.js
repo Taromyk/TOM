@@ -1,22 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const omikujiButton = document.getElementById('omikujiButton');
-    if (omikujiButton) {
-        omikujiButton.addEventListener('click', () => {
-            const omikujiButtonEnabled = localStorage.getItem('omikujiButtonEnabled');
-
-            if (omikujiButtonEnabled === 'true') {
-                // おみくじの処理をここに追加
-                getFortune();
-            } else {
-                alert('おみくじはまだ引けません');
-            }
-        });
-    }
-});
-
-// getFortune関数を定義
 function getFortune() {
-    // おみくじの処理内容をここに移動
+    // 現在の日付を取得
     const today = new Date().toDateString();
 
     // ローカルストレージから前回の日付を取得
@@ -59,9 +42,8 @@ function getFortune() {
     const totalEthElement = document.getElementById('totalETH');
     if (totalEthElement) {
         totalEthElement.innerText = '合計: ' + (newTotal / 100000).toFixed(5) + ' ETH';
-    }
+    }   
 
     // ローカルストレージに現在の日付を保存
     localStorage.setItem('lastDate', today);
 }
-
