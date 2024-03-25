@@ -1,4 +1,5 @@
 function getFortune() {
+    
     // 現在の日付を取得
     const today = new Date().toDateString();
 
