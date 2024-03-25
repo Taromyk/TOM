@@ -1,3 +1,19 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const omikujiButton = document.getElementById('omikujiButton');
+    if (omikujiButton) {
+        omikujiButton.addEventListener('click', () => {
+            const omikujiButtonEnabled = localStorage.getItem('omikujiButtonEnabled');
+
+            if (omikujiButtonEnabled === 'true') {
+                // おみくじの処理をここに追加
+                getFortune();
+            } else {
+                alert('おみくじはまだ引けません');
+            }
+        });
+    }
+});
+
 // getFortune関数を定義
 function getFortune() {
     // おみくじの処理内容をここに移動
@@ -49,18 +65,3 @@ function getFortune() {
     localStorage.setItem('lastDate', today);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const omikujiButton = document.getElementById('omikujiButton');
-    if (omikujiButton) {
-        omikujiButton.addEventListener('click', () => {
-            const omikujiButtonEnabled = localStorage.getItem('omikujiButtonEnabled');
-
-            if (omikujiButtonEnabled === 'true') {
-                // おみくじの処理をここに追加
-                getFortune();
-            } else {
-                alert('おみくじはまだ引けません');
-            }
-        });
-    }
-});
