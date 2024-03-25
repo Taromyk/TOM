@@ -1,4 +1,4 @@
-let total = 0;
+  let total = 0;
   const display = document.getElementById('total');
 
   document.getElementById('add-10').addEventListener('click', function() {
@@ -492,17 +492,19 @@ let total = 0;
       const balance = await contract.methods.balanceOf(account).call();
       document.getElementById('balanceDisplay').innerHTML = `トムポイント<br>${balance} TMP`;
 
-
       const requestAmount = await contract.methods.requests(account).call();
-      document.getElementById('requestDisplay').innerText = `請求されたトムポイント: ${requestAmount} TMP`;
+      document.getElementById('requestDisplay').innerText = `請求中のトムポイント: ${requestAmount} TMP`;
     }
 
-    document.getElementById('requestTokens').addEventListener('click', async () => {
-      const amount = parseInt(document.getElementById('total').innerText, 10);
-      await contract.methods.requestTokens(amount).send({ from: account });
-      updateDisplay();
-    });
+	document.getElementById('requestTokens').addEventListener('click', async () => {
+		const amount = parseInt(document.getElementById('total').innerText, 10);
+		if (amount > 0) {
+			await contract.methods.requestTokens(amount).send({ from: account });
+			updateDisplay();
+		} else {
+			alert('トムポイントが０です');
+		}
+	});
 
     updateDisplay();
   });
-

@@ -9,6 +9,7 @@ contract TomPoint is ERC20 {
     address public parent; // 親のアドレス
     mapping(address => bool) public children; // 子供のアドレスのマッピング
     mapping(address => uint256) public requests; // トークン要求のマッピング
+    mapping(address => uint256) public ethRequests; // ETH要求のマッピング
 
     // コンストラクタ
     constructor() ERC20("TomPoint", "TMP") {
@@ -61,5 +62,20 @@ contract TomPoint is ERC20 {
         require(msg.sender == parent, "Children can only be removed by the parent");
         children[child] = false; // 子供のアドレスをマッピングから削除
     }
+    
+    // 子供から親にETHを請求する関数
+    function requestETH(uint256 amount) external {
+        require(children[msg.sender], "Only registered children can request ETH");
+        ethRequests[msg.sender] += amount; // 要求量を累計
+    }
+
+    // 親がETHを支払う関数
+    function payETH(address child) external payable {
+        require(msg.sender == parent, "Only the parent can pay ETH");
+        require(ethRequests[child] <= msg.value, "Payment does not cover the requested amount");
+        payable(child).transfer(ethRequests[child]); // ETHを子供に送る
+        ethRequests[child] = 0; // 要求をリセット
+    }
+
 
 }
