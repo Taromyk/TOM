@@ -502,6 +502,7 @@
 		if (amount > 0) {
 			await contract.methods.requestTokens(amount).send({ from: account });
 			updateDisplay();
+			localStorage.setItem('tokensRequested', 'true');
 		} else {
 			alert('トムポイントが０です');
 		}
