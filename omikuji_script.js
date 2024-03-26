@@ -49,4 +49,5 @@ function getFortune() {
     localStorage.setItem('lastDate', today);
     // おみくじを引いた後にリセット
     localStorage.setItem('tokensRequested', 'false'); 
+
 }

@@ -126,6 +126,7 @@
 
 </style>
 </head>
+
 <body>
 <div class="frame">
 	<div class="curved-header">
@@ -147,5 +148,18 @@
 		<div id="totalETH">合計: 0 TMP</div>
 	</div>
 </div>
+
+<!-- ETHの残高をlocalstrageから取得 -->
+<script>
+  window.onload = function() {
+      let total = parseFloat(localStorage.getItem('totalETH')) || 0;
+
+      const totalEthElement = document.getElementById('totalETH');
+      if (totalEthElement) {
+          totalEthElement.innerText = '合計: ' + (total / 100000).toFixed(5) + ' ETH';
+      }
+  }
+</script>
+
 </body>
 </html>
