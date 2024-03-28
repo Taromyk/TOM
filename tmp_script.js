@@ -1,3 +1,4 @@
+const web3 = require('web3'); // Import the web3 module
   // MetaMaskとの連携
   window.addEventListener('load', async () => {
     if (window.ethereum) {
@@ -489,25 +490,28 @@
     const accounts = await web3.eth.getAccounts();
     const account = accounts[0];
 
-    async function updateDisplay() {
-      const balance = await contract.methods.balanceOf(account).call();
-      document.getElementById('balanceDisplay').innerHTML = `トムポイント<br>${balance} TMP`;
+// ディスプレイを更新する非同期関数
+async function updateDisplay() {
+	const balance = await contract.methods.balanceOf(account).call();
+	document.getElementById('balanceDisplay').innerHTML = `トムポイント<br>${balance} TMP`;
 
-      const requestAmount = await contract.methods.requests(account).call();
-      document.getElementById('requestDisplay').innerText = `請求中のトムポイント: ${requestAmount} TMP`;
-    }
+	const requestAmount = await contract.methods.requests(account).call();
+	document.getElementById('requestDisplay').innerText = `請求中のトムポイント: ${requestAmount} TMP`;
+}
 
-	document.getElementById('requestTokens').addEventListener('click', async () => {
-		const amount = parseInt(document.getElementById('total').innerText, 10);
-		if (amount > 0) {
-			await contract.methods.requestTokens(amount).send({ from: account });
-			updateDisplay();
-			localStorage.setItem('tokensRequested', 'true');
-            document.getElementById('total').innerText = '0'; // トータルを0にリセット
-		} else {
-			alert('トムポイントが０です');
-		}
-	});
+// 「requestTokens」ボタンのクリックイベントリスナー
+document.getElementById('requestTokens').addEventListener('click', async () => {
+	const amount = parseInt(document.getElementById('total').innerText, 10);
+	if (amount > 0) {
+		await contract.methods.requestTokens(amount).send({ from: account });
+		updateDisplay();
+		localStorage.setItem('tokensRequested', 'true');
+		document.getElementById('total').innerText = '0'; // トータルを0にリセット
+	} else {
+		alert('トムポイントが０です');
+	}
+});
 
-    updateDisplay();
-  });
+updateDisplay();
+
+});
