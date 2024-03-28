@@ -9,7 +9,7 @@ function getFortune() {
 
     // 前回の日付と現在の日付を比較、または'tokensRequested'が'true'かどうかを確認
     if (lastDate === today || tokensRequested !== 'true') {
-        alert('今日はすでにおみくじを引いています、または役に立つ仕事がまだです。');
+        alert('今日はすでにおみくじを引いています、　または役に立つ仕事がまだです。');
         return;
     }
     // おみくじのロジックをここに書く...
